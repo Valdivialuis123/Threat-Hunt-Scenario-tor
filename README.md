@@ -6,7 +6,7 @@
 - [Scenario Creation](https://github.com/Valdivialuis123/Threat-Hunt-Scenario-tor/blob/main/hreat-hunting-scenario-tor-event-creation.md))
 
 ## Platforms and Languages Leveraged
-- Windows 10 Virtual Machines (Microsoft Azure)
+- Windows 11 Virtual Machines (Microsoft Azure)
 - EDR Platform: Microsoft Defender for Endpoint
 - Kusto Query Language (KQL)
 - Tor Browser
@@ -27,37 +27,40 @@ Management suspects that some employees may be using TOR browsers to bypass netw
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-Searched for any file that had the string "tor" in it and discovered what looks like the user "employee" downloaded a TOR installer, did something that resulted in many TOR-related files being copied to the desktop, and the creation of a file called `tor-shopping-list.txt` on the desktop at `2024-11-08T22:27:19.7259964Z`. These events began at `2024-11-08T22:14:48.6065231Z`.
+Searched the DeviceFileEvents Table for Any File that had the string “Tor” in it and discovered what looks like the user “FinalprojectLab” downloaded a tor Installer, Did something that resulted in many tor-related files being copied to the desktop and the creation of a file called “tor-shopping-list.txt” on the the desktop. These Events began at
+Query used to locate events: 2026-01-27T21:59:15.4399281Z)
 
 **Query used to locate events:**
 
 ```kql
-DeviceFileEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where InitiatingProcessAccountName == "employee"  
-| where FileName contains "tor"  
-| where Timestamp >= datetime(2024-11-08T22:14:48.6065231Z)  
-| order by Timestamp desc  
-| project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
+DeviceFileEvents
+| where DeviceName =="finalprojectlab"
+| where  InitiatingProcessAccountName contains "finalprojectlab"
+| where Timestamp >= datetime(2026-01-27T21:59:15.4399281Z)
+| where FileName contains "tor"
+|order by Timestamp desc
+|project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account=InitiatingProcessAccountName
+
 ```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/71402e84-8767-44f8-908c-1805be31122d">
+<img width="1112" height="131" alt="image" src="https://github.com/user-attachments/assets/71075d7c-1f80-40b8-b969-efad69d43612" />
 
 ---
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched for any `ProcessCommandLine` that contained the string "tor-browser-windows-x86_64-portable-14.0.1.exe". Based on the logs returned, at `2024-11-08T22:16:47.4484567Z`, an employee on the "threat-hunt-lab" device ran the file `tor-browser-windows-x86_64-portable-14.0.1.exe` from their Downloads folder, using a command that triggered a silent installation.
+Searched the DeviceProcessEvents Table for  table that contained the string “tor-browser-windows-x86_64-portable-15.0.4.exe  /S “ Based on the logs returned 
+On the afternoon of 2026-01-27T23:14:27.0285718Z, the user account “finalprojectlab123” on the computer named “finalprojectlab” started running the Tor Browser portable installer (version 15.0.4) from their Downloads folder, and it was launched silently 
 
 **Query used to locate event:**
 
 ```kql
 
-DeviceProcessEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.1.exe"  
+DeviceProcessEvents
+| where  DeviceName =="finalprojectlab"
+| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-15.0.4.exe"
 | project Timestamp, DeviceName, AccountName, ActionType, FileName, FolderPath, SHA256, ProcessCommandLine
-```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/b07ac4b4-9cb3-4834-8fac-9f5f29709d78">
+
+
 
 ---
 
