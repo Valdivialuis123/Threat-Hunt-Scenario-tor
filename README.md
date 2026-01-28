@@ -111,15 +111,15 @@ File activity shows the installer was written to disk and staged for execution.
 This represents the initial introduction of Tor software onto the system.
 Evidence:
 DeviceFileEvents entries with filenames containing “tor
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\Finalprojectlab\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
 
 ### 2. Process Execution - TOR Browser Installation
 
 - **Timestamp:** `2026-01-27 23:14:27 UTC`
-- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
+- **Event:** The user "FinalprojectLab" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
 - **Action:** Process creation detected.
 - **Command:** `tor-browser-windows-x86_64-portable-14.0.1.exe /S`
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\Finalprojectlab\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
 - Outcome:Tor Browser application successfully installed and ready for use
 - Installation resulted in multiple Tor-related files and folders being extracted to the Desktop.
 
@@ -127,9 +127,9 @@ DeviceFileEvents entries with filenames containing “tor
 ### 3. Process Execution - TOR Browser Launch
 
 - **Timestamp:** `2026-01-27 23:15:28 UTC
-- **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
+- **Event:** User "FinalprojectLab" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
 - **Action:** Process creation of TOR browser-related executables detected.
-- **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
+- **File Path:** `C:\Users\Finalprojectlab\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
 - The user launched the Tor Browser application.
 -Multiple processes spawned, including:tor.exe, firefox.exe (Tor Browser variant)tor-browser.exe
 outcome- Process creation confirms active user execution, not just installation.
@@ -143,35 +143,46 @@ Confirmed connection to:remote IP: 81.201.202.101
 Port: 9001 (known Tor relay port) Additional encrypted connections observed over ports 443 and 80.
 - **Action:** Connection success.
 - **Process:** `tor.exe`
-- **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
+- **File Path:** `c:\users\Finalprojectlab\desktop\tor browser\browser\torbrowser\tor\tor.exe`
 - Conclusion:
 Tor successfully established circuits and began routing traffic anonymously.
 
 ### 5. Additional Network Connections - TOR Browser Activity
 
 - **Timestamps:**
-  - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
-  - `2024-11-08T22:18:16Z` - Local connection to `127.0.0.1` on port `9150`.
+  - `Jan 27, 2026 3:18:14 PM - Connected to `194.164.169.85` on port `443`.
+  - `Jan 27, 2026 3:18:29 PM` - Local connection to `127.0.0.1` on port `9150`.
 - **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
 - **Action:** Multiple successful connections detected.
 
+- Conclusion: Continued execution of firefox.exe (Tor Browser) and tor.exe indicates sustained browsing activity.
+Ongoing network connections over Tor-related and HTTPS ports confirm active user interaction.
+Activity persisted after initial connection establishment, indicating more than a test launch
+
+
 ### 6. File Creation - TOR Shopping List
 
-- **Timestamp:** `2024-11-08T22:27:19.7259964Z`
-- **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
+- **Timestamp:** `Jan 27, 2026- 3:43:33 PM
+- **Event:** The user "Finalprojectlab" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
 - **Action:** File creation detected.
 - **File Path:** `C:\Users\employee\Desktop\tor-shopping-list.txt`
+- 
+- Conclusion: A file named tor-shopping-list.txt was created on the Desktop.
+This artifact is consistent with user activity performed while Tor was in use.
+The file strongly indicates intentional use of Tor for browsing or research purposes
+
 
 ---
 
 ## Summary
 
-The user "employee" on the "threat-hunt-lab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the "shopping list" file.
+On January 27, 2026, the user FinalprojectLab intentionally downloaded and installed the Tor Browser on the device finalprojectlab. The activity began with the download of a Tor Browser installer, followed by a silent installation of the portable Tor Browser application. Shortly after installation, the user executed the Tor Browser, which resulted in the creation of multiple Tor-related processes, including tor.exe and a Tor-specific instance of firefox.exe. This sequence confirms that the Tor Browser was not only installed but also actively launched by the user.
+After execution, the Tor service successfully established outbound network connections to known Tor relay ports, confirming participation in the Tor network and the creation of anonymized communication channels. Continued process and network activity indicated sustained Tor browsing activity. During this session, a user-created artifact named tor-shopping-list.txt was generated on the desktop, demonstrating active user interaction while using the Tor Browser. Overall, the evidence shows deliberate and intentional use of Tor rather than accidental or background system activity.
 
 ---
 
 ## Response Taken
 
-TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `employee`. The device was isolated, and the user's direct manager was notified.
+TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `FinalProjectLab`. The device was isolated, and the user's direct manager was notified.
 
 ---
